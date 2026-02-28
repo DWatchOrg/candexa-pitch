@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candexa AI — Investor Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #ff8233;
+    --orange-dark: #e06520;
+    --orange-light: #ffe5d0;
+    --bg: #fff9f6;
+    --dark: #1a1a1a;
+    --white: #ffffff;
+    --grey: #6b6b6b;
+    --light-grey: #f0ebe7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  /* Deck container */
+  .deck-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    position: relative;
+  }
+
+  .deck-viewport {
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  }
+
+  /* Slides */
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* Navigation */
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .nav-btn {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .nav-btn:disabled { background: #555; cursor: default; transform: none; }
+  .slide-counter {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: center;
+  }
+  .nav-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-dot.active { background: var(--orange); transform: scale(1.3); }
+
+  /* ============ SHARED COMPONENTS ============ */
+  .logo-small {
+    position: absolute;
+    top: 22px;
+    left: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+  }
+  .logo-small .logo-text {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: var(--dark);
+  }
+  .logo-small.white .logo-text { color: white; }
+
+  .slide-num {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.25);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .slide-num.white { color: rgba(255,255,255,0.35); }
+
+  /* Decorative SVG elements */
+  .deco { position: absolute; pointer-events: none; }
+
+  /* ============ SLIDE 1 — COVER ============ */
+  #s1 {
+    background: var(--bg);
+    flex-direction: row;
+  }
+  .s1-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px 60px 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .s1-right {
+    width: 42%;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .s1-tag {
+    background: var(--orange);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 22px;
+  }
+  .s1-headline {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--dark);
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+  }
+  .s1-headline span { color: var(--orange); }
+  .s1-sub {
+    font-size: 15px;
+    color: var(--grey);
+    line-height: 1.6;
+    max-width: 360px;
+    margin-bottom: 32px;
+  }
+  .s1-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+  .pill {
+    background: var(--light-grey);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  .s1-contact {
+    font-size: 12px;
+    color: var(--grey);
+    line-height: 1.8;
+  }
+  .s1-contact a { color: var(--orange); text-decoration: none; font-weight: 600; }
+
+  /* ============ SLIDE 2 — BROKEN ============ */
+  #s2 {
+    background: var(--dark);
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+  }
+  .s2-headline {
+    font-size: 54px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .s2-headline span { color: var(--orange); }
+  .s2-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 40px;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+  .s2-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .pain-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 22px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+  }
+  .pain-num {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .pain-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .s2-bottom {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .s2-bottom-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+  }
+  .s2-bottom-text span { color: var(--orange); }
+
+  /* ============ SLIDE 3 — INSIGHT ============ */
+  #s3 {
+    background: var(--bg);
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .s3-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px 60px 60px;
+  }
+  .s3-right {
+    width: 38%;
+    background: var(--orange);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s3-big-num {
+    font-size: 88px;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .s3-label {
+    font-size: 14px;
+    color: var(--grey);
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .s3-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .s3-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .s3-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  .s3-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .s3-callout {
+    background: var(--dark);
+    color: white;
+    border-radius: 12px;
+    padding: 18px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .s3-callout span { color: var(--orange); }
+  .s3-right-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.2;
+  }
+  .s3-icon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+  .s3-icon-card {
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+    padding: 16px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .s3-icon-card .ico { font-size: 20px; }
+  .s3-icon-card .ico-label { font-size: 12px; font-weight: 700; color: white; }
+
+  /* ============ SLIDE 4 — SHIFT ============ */
+  #s4 {
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    padding: 55px 60px;
+    position: relative;
+  }
+  .s4-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: -2px;
+    margin-bottom: 40px;
+  }
+  .s4-title span { color: var(--orange); }
+  .s4-compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: center;
+  }
+  .model-card {
+    border-radius: 16px;
+    padding: 32px 36px;
+  }
+  .model-card.old {
+    background: var(--light-grey);
+    border: 2px solid #ddd;
+  }
+  .model-card.new {
+    background: var(--orange);
+    color: white;
+  }
+  .model-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 12px;
+  }
+  .model-title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .model-card.old .model-title { color: var(--dark); }
+  .model-card.new .model-title { color: white; }
+  .model-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .model-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .model-card.old .model-step { color: var(--grey); }
+  .model-card.new .model-step { color: rgba(255,255,255,0.9); }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .model-card.old .step-num { background: #ddd; color: var(--dark); }
+  .model-card.new .step-num { background: rgba(255,255,255,0.25); color: white; }
+  .s4-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .s4-bottom {
+    margin-top: 28px;
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 18px 28px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+  }
+  .s4-bottom span { color: var(--orange); }
+
+  /* ============ SLIDE 5 — PRODUCT ============ */
+  #s5 {
+    background: var(--bg);
+    flex-direction: column;
+    padding: 48px 60px;
+    position: relative;
+  }
+  .s5-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  .s5-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: -2px;
+  }
+  .s5-title span { color: var(--orange); }
+  .s5-cta {
+    background: var(--orange);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .s5-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+  .product-col {
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .product-col.rec {
+    background: var(--dark);
+  }
+  .product-col.can {
+    background: var(--orange);
+  }
+  .col-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .product-col.rec .col-label { color: rgba(255,255,255,0.4); }
+  .product-col.can .col-label { color: rgba(255,255,255,0.6); }
+  .col-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+  .feat-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .product-col.rec .feat-check { background: var(--orange); }
+  .product-col.can .feat-check { background: rgba(255,255,255,0.3); }
+  .feat-check svg { width: 10px; height: 10px; }
+
+  /* ============ SLIDE 6 — PROOF ============ */
+  #s6 {
+    background: var(--bg);
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .s6-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px 60px 60px;
+  }
+  .s6-right {
+    width: 45%;
+    background: var(--orange);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+    gap: 20px;
+  }
+  .s6-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .s6-desc {
+    font-size: 14px;
+    color: var(--grey);
+    line-height: 1.7;
+    max-width: 360px;
+    margin-bottom: 28px;
+  }
+  .s6-callout {
+    background: var(--dark);
+    color: white;
+    border-radius: 12px;
+    padding: 16px 22px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .s6-callout span { color: var(--orange); }
+  .stat-bubble {
+    background: rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 22px 28px;
+    text-align: center;
+    width: 100%;
+  }
+  .stat-big {
+    font-size: 56px;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* ============ SLIDE 7 — MARKET ============ */
+  #s7 {
+    background: var(--dark);
+    flex-direction: column;
+    justify-content: center;
+    padding: 55px 60px;
+    position: relative;
+  }
+  .s7-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .s7-title span { color: var(--orange); }
+  .s7-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 36px;
+  }
+  .market-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .market-bubble-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .market-bubble {
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .bubble-val {
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .bubble-lbl {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .market-name {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    margin-top: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .s7-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .s7-bottom-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+  }
+  .s7-bottom-text span { color: var(--orange); }
+
+  /* ============ SLIDE 8 — WHY ============ */
+  #s8 {
+    background: var(--bg);
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .s8-left {
+    width: 42%;
+    background: var(--orange);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s8-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px;
+  }
+  .s8-left-title {
+    font-size: 44px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+  }
+  .s8-left-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .s8-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: -1.5px;
+    margin-bottom: 28px;
+  }
+  .s8-title span { color: var(--orange); }
+  .win-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .win-item:last-child { border-bottom: none; }
+  .win-check {
+    width: 28px;
+    height: 28px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 1px;
+  }
+  .win-text {
+    font-size: 14px;
+    color: var(--dark);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .win-text em { color: var(--orange); font-style: normal; }
+
+  /* ============ SLIDE 9 — BUSINESS MODEL ============ */
+  #s9 {
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px 60px;
+    position: relative;
+  }
+  .s9-header {
+    margin-bottom: 36px;
+  }
+  .s9-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .s9-title span { color: var(--orange); }
+  .s9-sub {
+    font-size: 14px;
+    color: var(--grey);
+    font-weight: 500;
+  }
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .rev-card {
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .rev-card:nth-child(1) { background: var(--orange); }
+  .rev-card:nth-child(2) { background: var(--dark); }
+  .rev-card:nth-child(3) { background: var(--light-grey); border: 2px solid #e0dbd6; }
+  .rev-card:nth-child(4) { background: #2a2a2a; }
+  .rev-num {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .rev-card:nth-child(1) .rev-num { color: rgba(255,255,255,0.3); }
+  .rev-card:nth-child(2) .rev-num { color: var(--orange); }
+  .rev-card:nth-child(3) .rev-num { color: #ccc8c4; }
+  .rev-card:nth-child(4) .rev-num { color: var(--orange); }
+  .rev-title {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .rev-card:nth-child(1) .rev-title { color: white; }
+  .rev-card:nth-child(2) .rev-title { color: white; }
+  .rev-card:nth-child(3) .rev-title { color: var(--dark); }
+  .rev-card:nth-child(4) .rev-title { color: white; }
+  .rev-desc {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .rev-card:nth-child(1) .rev-desc { color: rgba(255,255,255,0.7); }
+  .rev-card:nth-child(2) .rev-desc { color: rgba(255,255,255,0.55); }
+  .rev-card:nth-child(3) .rev-desc { color: var(--grey); }
+  .rev-card:nth-child(4) .rev-desc { color: rgba(255,255,255,0.55); }
+  .s9-footer {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .s9-footer-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .s9-footer-text span { color: var(--orange); }
+
+  /* ============ SLIDE 10 — CLOSE ============ */
+  #s10 {
+    background: var(--orange);
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .s10-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px 60px 60px;
+    position: relative;
+  }
+  .s10-right {
+    width: 40%;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s10-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
+  }
+  .s10-headline {
+    font-size: 52px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .s10-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 370px;
+    margin-bottom: 36px;
+  }
+  .s10-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .s10-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 12px 18px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .s10-right-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 24px;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+  }
+  .s10-tag-large {
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .s10-tag-large span { color: var(--orange); }
+  .future-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .future-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .f-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .future-item span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="deck-wrapper">
+<div class="deck-viewport" id="deck">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: COVER -->
+<!-- ============================================================ -->
+<div class="slide active" id="s1">
+  <!-- Logo top-left -->
+  <div class="logo-small">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num">01 / 10</div>
+
+  <!-- Decorative shapes -->
+  <svg class="deco" style="top:-40px;left:-40px;opacity:0.06" width="300" height="300" viewBox="0 0 300 300">
+    <circle cx="150" cy="150" r="140" fill="#ff8233"/>
+  </svg>
+  <svg class="deco" style="bottom:20px;left:20px;opacity:0.08" width="120" height="120" viewBox="0 0 120 120">
+    <rect x="10" y="10" width="100" height="100" rx="22" fill="#ff8233" transform="rotate(15 60 60)"/>
+  </svg>
+
+  <div class="s1-left">
+    <div class="s1-tag">Investor Deck 2025</div>
+    <h1 class="s1-headline">The New Job<br>Network.<br><span>In Your Inbox.</span></h1>
+    <p class="s1-sub">Candexa AI turns every email inbox into an AI-powered ATS + Job Network. No new software. No integrations. Just activate.</p>
+    <div class="s1-pills">
+      <span class="pill">Gmail</span>
+      <span class="pill">Outlook</span>
+      <span class="pill">Yahoo</span>
+      <span class="pill">Zoho</span>
+      <span class="pill">4B+ Users</span>
+    </div>
+    <div class="s1-contact">
+      <a href="/cdn-cgi/l/email-protection#9ef9fbf1defdfff0fafbe6ffb0fff7"><span class="__cf_email__" data-cfemail="e384868ca380828d87869b82cd828a">[email&#160;protected]</span></a><br>
+      <a href="https://www.candexa.ai">www.candexa.ai</a>
+    </div>
+  </div>
+
+  <div class="s1-right">
+    <!-- Orange panel with decorations -->
+    <svg style="position:absolute;top:0;right:0;opacity:0.15" width="100%" height="100%" viewBox="0 0 500 720" preserveAspectRatio="xMidYMid slice">
+      <!-- Abstract shapes -->
+      <circle cx="400" cy="100" r="180" fill="white"/>
+      <circle cx="50" cy="600" r="140" fill="white"/>
+      <rect x="200" y="300" width="200" height="200" rx="40" transform="rotate(20 300 400)" fill="white"/>
+    </svg>
+    <!-- Centered large logo mark -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;z-index:2;">
+      <svg width="120" height="120" viewBox="0 0 40 40" fill="none">
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="white" opacity="0.9"/>
+        <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="white" opacity="0.9"/>
+      </svg>
+      <div style="color:white;font-weight:900;font-size:26px;letter-spacing:-1px;text-align:center;line-height:1.2;">Candexa AI</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;letter-spacing:1px;text-align:center;text-transform:uppercase;">Inbox-Native Hiring</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: HIRING IS BROKEN -->
+<!-- ============================================================ -->
+<div class="slide" id="s2">
+  <div class="logo-small white">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num white">02 / 10</div>
+
+  <!-- Decorative -->
+  <svg class="deco" style="top:-60px;right:-60px;opacity:0.04" width="300" height="300" viewBox="0 0 300 300">
+    <circle cx="150" cy="150" r="140" fill="#ff8233"/>
+  </svg>
+
+  <h1 class="s2-headline">Hiring Is<br><span>Broken.</span></h1>
+  <p class="s2-sub">AI is accelerating hiring — but on top of fragmented infrastructure that holds everyone back.</p>
+
+  <div class="s2-grid">
+    <div class="pain-card">
+      <div class="pain-num">10+</div>
+      <div class="pain-label">Tools used per single hire — constant context switching</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">40%</div>
+      <div class="pain-label">Recruiter time lost switching between tabs & platforms</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">High</div>
+      <div class="pain-label">Candidate drop-off from slow, disconnected processes</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">$$$</div>
+      <div class="pain-label">Expensive ATS systems that sit underused and unloved</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">0%</div>
+      <div class="pain-label">Of this changes when you add yet another AI tool on top</div>
+    </div>
+  </div>
+
+  <div class="s2-bottom">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path d="M16 4L28 28H4L16 4Z" fill="#ff8233" opacity="0.8"/>
+    </svg>
+    <div class="s2-bottom-text">The problem isn't a lack of tools. It's <span>fragmented infrastructure.</span></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: THE INSIGHT -->
+<!-- ============================================================ -->
+<div class="slide" id="s3">
+  <div class="logo-small">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num">03 / 10</div>
+
+  <div class="s3-left">
+    <div class="s3-big-num">4B+</div>
+    <div class="s3-label">Email users worldwide</div>
+    <h2 class="s3-title">Every hire already<br>lives in email.</h2>
+    <div class="s3-items">
+      <div class="s3-item"><span class="s3-dot"></span> Every Application</div>
+      <div class="s3-item"><span class="s3-dot"></span> Every Interview</div>
+      <div class="s3-item"><span class="s3-dot"></span> Every Offer</div>
+      <div class="s3-item"><span class="s3-dot"></span> Every Rejection</div>
+    </div>
+    <div class="s3-callout">
+      Email is the <span>largest unoptimized</span> hiring infrastructure in the world.
+    </div>
+  </div>
+
+  <div class="s3-right">
+    <!-- Decorative circles on orange bg -->
+    <svg style="position:absolute;top:0;left:0;opacity:0.1" width="100%" height="100%" viewBox="0 0 400 720" preserveAspectRatio="xMidYMid slice">
+      <circle cx="350" cy="80" r="120" fill="white"/>
+      <circle cx="50" cy="500" r="160" fill="white"/>
+    </svg>
+    <div class="s3-right-title" style="position:relative;z-index:2;">Already In<br>Your Inbox</div>
+    <div class="s3-icon-grid" style="position:relative;z-index:2;">
+      <div class="s3-icon-card">
+        <div class="ico">📩</div>
+        <div class="ico-label">Applications</div>
+      </div>
+      <div class="s3-icon-card">
+        <div class="ico">🎯</div>
+        <div class="ico-label">Interviews</div>
+      </div>
+      <div class="s3-icon-card">
+        <div class="ico">✅</div>
+        <div class="ico-label">Offers</div>
+      </div>
+      <div class="s3-icon-card">
+        <div class="ico">📅</div>
+        <div class="ico-label">Scheduling</div>
+      </div>
+    </div>
+    <div style="position:relative;z-index:2;margin-top:20px;background:rgba(0,0,0,0.15);border-radius:12px;padding:16px 18px;width:100%;">
+      <div style="font-size:22px;font-weight:900;color:white;letter-spacing:-0.5px;">Zero new tools.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;font-weight:600;">Just activate Candexa AI.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: THE SHIFT -->
+<!-- ============================================================ -->
+<div class="slide" id="s4">
+  <div class="logo-small">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num">04 / 10</div>
+
+  <!-- Deco -->
+  <svg class="deco" style="bottom:-80px;right:-80px;opacity:0.04" width="320" height="320" viewBox="0 0 320 320">
+    <circle cx="160" cy="160" r="150" fill="#ff8233"/>
+  </svg>
+
+  <h2 class="s4-title">The <span>Shift</span></h2>
+
+  <div class="s4-compare">
+    <div class="model-card old">
+      <div class="model-tag">Old Model</div>
+      <div class="model-title">Platform-Based ATS</div>
+      <div class="model-steps">
+        <div class="model-step">
+          <div class="step-num">1</div>
+          Login to platform
+        </div>
+        <div class="model-step">
+          <div class="step-num">2</div>
+          Open dashboard
+        </div>
+        <div class="model-step">
+          <div class="step-num">3</div>
+          Manage manually
+        </div>
+        <div class="model-step">
+          <div class="step-num">4</div>
+          Switch between 10+ tabs
+        </div>
+      </div>
+    </div>
+
+    <div class="s4-arrow">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="30" r="28" fill="#ff8233"/>
+        <path d="M20 30H40M33 23L40 30L33 37" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="model-card new">
+      <div class="model-tag">New Model</div>
+      <div class="model-title">Inbox-Native Hiring</div>
+      <div class="model-steps">
+        <div class="model-step">
+          <div class="step-num">1</div>
+          Open your email
+        </div>
+        <div class="model-step">
+          <div class="step-num">2</div>
+          AI handles everything
+        </div>
+        <div class="model-step">
+          <div class="step-num">3</div>
+          Pipeline auto-managed
+        </div>
+        <div class="model-step">
+          <div class="step-num">4</div>
+          Zero context switching
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s4-bottom">
+    We don't add another tool. We <span>upgrade the one everyone already uses.</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: THE PRODUCT -->
+<!-- ============================================================ -->
+<div class="slide" id="s5">
+  <div class="logo-small">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num">05 / 10</div>
+
+  <div class="s5-header">
+    <h2 class="s5-title">The <span>Product</span></h2>
+    <div class="s5-cta">One click → AI hiring system</div>
+  </div>
+
+  <div class="s5-cols">
+    <div class="product-col rec">
+      <div class="col-label">For Recruiters</div>
+      <div class="col-title">Your AI Hiring<br>Command Centre</div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Auto-capture applicants from inbox
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        AI resume parsing + smart ranking
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Send AI-powered interviews via email
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Auto-schedule & manage calendar
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Live pipeline view inside inbox
+      </div>
+    </div>
+
+    <div class="product-col can">
+      <div class="col-label">For Candidates</div>
+      <div class="col-title">Your Personal<br>Job Agent</div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Personal job agent lives in your inbox
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Matched roles surfaced automatically
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Guided applications with AI assist
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Real-time application tracking
+      </div>
+      <div class="feature-item">
+        <div class="feat-check">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        No new login — stays in email
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: PROOF OF IMPACT -->
+<!-- ============================================================ -->
+<div class="slide" id="s6">
+  <div class="logo-small">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num">06 / 10</div>
+
+  <div class="s6-left">
+    <h2 class="s6-title">Proof of<br>Impact</h2>
+    <p class="s6-desc">From application to interview scheduling — all inside email. This is workflow compression at scale.</p>
+    <div class="s6-callout">
+      <span>This is workflow compression.</span><br>
+      Application → Screening → Interview → Schedule<br>
+      All without leaving your inbox.
+    </div>
+  </div>
+
+  <div class="s6-right">
+    <!-- Deco circles -->
+    <svg style="position:absolute;top:0;left:0;opacity:0.1" width="100%" height="100%" viewBox="0 0 500 720" preserveAspectRatio="xMidYMid slice">
+      <circle cx="400" cy="600" r="200" fill="white"/>
+      <circle cx="-30" cy="100" r="150" fill="white"/>
+    </svg>
+    <div class="stat-bubble" style="position:relative;z-index:2;">
+      <div class="stat-big">31%</div>
+      <div class="stat-label">↓ Reduction in time-to-hire</div>
+    </div>
+    <div class="stat-bubble" style="position:relative;z-index:2;">
+      <div class="stat-big">45%</div>
+      <div class="stat-label">↓ Reduction in candidate drop-off</div>
+    </div>
+    <div class="stat-bubble" style="position:relative;z-index:2;">
+      <div class="stat-big">10+</div>
+      <div class="stat-label">Hours saved per recruiter, weekly</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7: MARKET OPPORTUNITY -->
+<!-- ============================================================ -->
+<div class="slide" id="s7">
+  <div class="logo-small white">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num white">07 / 10</div>
+
+  <!-- Decorative circles -->
+  <svg class="deco" style="bottom:-80px;right:-80px;opacity:0.06" width="400" height="400" viewBox="0 0 400 400">
+    <circle cx="200" cy="200" r="190" fill="#ff8233"/>
+  </svg>
+
+  <h2 class="s7-title">A <span>Massive</span><br>Opportunity</h2>
+  <p class="s7-sub">We're not fighting for ATS market share — we're activating inbox infrastructure at global scale.</p>
+
+  <div class="market-row">
+    <div class="market-bubble-wrap">
+      <div class="market-bubble" style="width:150px;height:150px;background:#ff8233;">
+        <div class="bubble-val" style="font-size:28px;">$969B</div>
+        <div class="bubble-lbl">Total</div>
+      </div>
+      <div class="market-name">Total Talent<br>Economy</div>
+    </div>
+    <div class="market-bubble-wrap">
+      <div class="market-bubble" style="width:120px;height:120px;background:rgba(255,130,51,0.6);">
+        <div class="bubble-val" style="font-size:22px;">$400B</div>
+        <div class="bubble-lbl">Fees</div>
+      </div>
+      <div class="market-name">Global Agency<br>Fees</div>
+    </div>
+    <div class="market-bubble-wrap">
+      <div class="market-bubble" style="width:100px;height:100px;background:rgba(255,130,51,0.4);">
+        <div class="bubble-val" style="font-size:18px;">$185B</div>
+        <div class="bubble-lbl">Tech</div>
+      </div>
+      <div class="market-name">Recruitment &<br>HR Tech</div>
+    </div>
+    <div class="market-bubble-wrap">
+      <div class="market-bubble" style="width:130px;height:130px;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.2);">
+        <div class="bubble-val" style="font-size:26px;">4B+</div>
+        <div class="bubble-lbl">Users</div>
+      </div>
+      <div class="market-name">Email<br>Penetration</div>
+    </div>
+  </div>
+
+  <div class="s7-bottom">
+    <div class="s7-bottom-text">
+      We are activating <span>inbox infrastructure</span> at global scale.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: WHY THIS WINS -->
+<!-- ============================================================ -->
+<div class="slide" id="s8">
+  <div class="logo-small white">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text" style="color:white;">Candexa AI</span>
+  </div>
+  <div class="slide-num white">08 / 10</div>
+
+  <div class="s8-left">
+    <!-- Deco -->
+    <svg style="position:absolute;top:0;left:0;opacity:0.1" width="100%" height="100%" viewBox="0 0 500 720" preserveAspectRatio="xMidYMid slice">
+      <circle cx="-50" cy="-50" r="250" fill="white"/>
+      <circle cx="550" cy="750" r="200" fill="white"/>
+    </svg>
+    <div class="s8-left-title" style="position:relative;z-index:2;">Why This<br>Wins.</div>
+    <div class="s8-left-desc" style="position:relative;z-index:2;">
+      The deeper you work from email,<br>the harder it is to churn.<br><br>
+      Candexa AI becomes invisible infrastructure — always on, always working.
+    </div>
+  </div>
+
+  <div class="s8-right">
+    <h2 class="s8-title">Our <span>Unfair</span><br>Advantages</h2>
+    <div class="win-item">
+      <div class="win-check">✓</div>
+      <div class="win-text"><em>Zero behavior change</em> — works where people already live</div>
+    </div>
+    <div class="win-item">
+      <div class="win-check">✓</div>
+      <div class="win-text"><em>Zero heavy onboarding</em> — activate and go</div>
+    </div>
+    <div class="win-item">
+      <div class="win-check">✓</div>
+      <div class="win-text">Works with <em>Gmail, Outlook, Yahoo, Zoho</em> — all clients</div>
+    </div>
+    <div class="win-item">
+      <div class="win-check">✓</div>
+      <div class="win-text"><em>Low CAC</em> — email-native viral distribution</div>
+    </div>
+    <div class="win-item">
+      <div class="win-check">✓</div>
+      <div class="win-text"><em>High retention</em> — embedded in daily workflow</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: BUSINESS MODEL -->
+<!-- ============================================================ -->
+<div class="slide" id="s9">
+  <div class="logo-small">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+    </svg>
+    <span class="logo-text">Candexa AI</span>
+  </div>
+  <div class="slide-num">09 / 10</div>
+
+  <!-- Deco -->
+  <svg class="deco" style="top:40px;right:40px;opacity:0.05" width="200" height="200" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="90" stroke="#ff8233" stroke-width="20" fill="none"/>
+  </svg>
+
+  <div class="s9-header">
+    <h2 class="s9-title">Business <span>Model</span></h2>
+    <div class="s9-sub">High-margin automation. Global from Day 1.</div>
+  </div>
+
+  <div class="revenue-grid">
+    <div class="rev-card">
+      <div class="rev-num">01</div>
+      <div class="rev-title">Recruiter Subscription</div>
+      <div class="rev-desc">AI Inbox Agent — monthly/annual SaaS. Core product, recurring revenue.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-num">02</div>
+      <div class="rev-title">AI Interview Credits</div>
+      <div class="rev-desc">Usage-based pricing for AI interview generation and scoring.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-num">03</div>
+      <div class="rev-title">Talent Premium Visibility</div>
+      <div class="rev-desc">Candidates pay for boosted placement and enhanced profile visibility.</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-num">04</div>
+      <div class="rev-title">Enterprise Inbox API</div>
+      <div class="rev-desc">API layer for enterprises. Integrate Candexa AI at infrastructure level.</div>
+    </div>
+  </div>
+
+  <div class="s9-footer">
+    <div style="width:40px;height:40px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </div>
+    <div class="s9-footer-text">
+      Four compounding revenue streams. <span>High margin. Built for global scale.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: CLOSING -->
+<!-- ============================================================ -->
+<div class="slide" id="s10">
+  <div class="logo-small white">
+    <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="white"/>
+      <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="white"/>
+    </svg>
+    <span class="logo-text" style="color:white;">Candexa AI</span>
+  </div>
+  <div class="slide-num white">10 / 10</div>
+
+  <div class="s10-left">
+    <!-- Decoratives -->
+    <svg style="position:absolute;top:0;left:0;opacity:0.1" width="100%" height="100%" viewBox="0 0 800 720" preserveAspectRatio="xMidYMid slice">
+      <circle cx="700" cy="700" r="300" fill="white"/>
+      <circle cx="-50" cy="-50" r="200" fill="white"/>
+      <circle cx="400" cy="200" r="80" fill="white" opacity="0.5"/>
+    </svg>
+
+    <div class="s10-eyebrow" style="position:relative;z-index:2;">The Future of Hiring</div>
+    <h1 class="s10-headline" style="position:relative;z-index:2;">The New Job<br>Network.<br>In Your Inbox.</h1>
+    <p class="s10-desc" style="position:relative;z-index:2;">Email is the most resilient protocol in the workforce. Candexa AI makes it intelligent.</p>
+    <div class="s10-contact" style="position:relative;z-index:2;">
+      <div class="s10-contact-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="white" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="690e0c06290a08070d0c1108470800">[email&#160;protected]</a>
+      </div>
+      <div class="s10-contact-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="1.5"/><path d="M8 1.5C8 1.5 6 5 6 8s2 6.5 2 6.5M1.5 8h13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        www.candexa.ai
+      </div>
+    </div>
+  </div>
+
+  <div class="s10-right">
+    <!-- Deco on dark -->
+    <svg style="position:absolute;top:0;left:0;opacity:0.07" width="100%" height="100%" viewBox="0 0 500 720" preserveAspectRatio="xMidYMid slice">
+      <circle cx="400" cy="200" r="200" fill="#ff8233"/>
+      <circle cx="50" cy="600" r="150" fill="#ff8233"/>
+    </svg>
+
+    <div class="s10-right-title" style="position:relative;z-index:2;">Why invest</div>
+    <div class="s10-tag-large" style="position:relative;z-index:2;">Invisible<br><span>infrastructure.</span></div>
+
+    <div class="future-list" style="position:relative;z-index:2;">
+      <div class="future-item">
+        <div class="f-dot"></div>
+        <span>4B+ email users. Zero new behaviour needed.</span>
+      </div>
+      <div class="future-item">
+        <div class="f-dot"></div>
+        <span>$969B talent economy to activate.</span>
+      </div>
+      <div class="future-item">
+        <div class="f-dot"></div>
+        <span>4 revenue streams, high-margin, global Day 1.</span>
+      </div>
+      <div class="future-item">
+        <div class="f-dot"></div>
+        <span>The deeper the use, the harder to churn.</span>
+      </div>
+      <div class="future-item">
+        <div class="f-dot"></div>
+        <span>The future of hiring is inbox-native AI.</span>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:2;margin-top:28px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(30 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(60 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(90 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(120 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(150 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(180 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(210 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(240 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(270 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(300 20 20)" fill="#ff8233"/>
+          <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="#ff8233"/>
+        </svg>
+        <span style="color:white;font-weight:900;font-size:18px;letter-spacing:-0.5px;">Candexa AI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end deck-viewport -->
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>← Prev</button>
+  <div class="nav-dots" id="navDots"></div>
+  <span class="slide-counter" id="counter">1 / 10</span>
+  <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</div>
+
+</div><!-- end deck-wrapper -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  // Build nav dots
+  const dotsContainer = document.getElementById('navDots');
+  for(let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, index));
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+  }
+
+  function changeSlide(dir) {
+    goTo(current + dir);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9d4b11464fb241e2","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.9.1","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+</body>
+</html>
