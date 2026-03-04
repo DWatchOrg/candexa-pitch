@@ -22,7 +22,7 @@ export default function ProofSlide({ isActive }: { isActive?: boolean }) {
 
       <div className="s6-left">
         <h2 className="s6-title">Proof of<br/>Impact</h2>
-        <p className="s6-desc">From application to interview scheduling — all inside email. This is workflow compression at scale.</p>
+        <p className="s6-desc">From application to interview scheduling all inside email. This is workflow compression at scale.</p>
         <div className="s6-callout">
           <span>This is workflow compression.</span><br/>
           Application → Screening → Interview → Schedule<br/>

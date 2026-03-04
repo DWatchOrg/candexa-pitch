@@ -34,7 +34,7 @@ export default function BusinessModelSlide({ isActive }: { isActive?: boolean })
         <div className="rev-card">
           <div className="rev-num">01</div>
           <div className="rev-title">Recruiter Subscription</div>
-          <div className="rev-desc">AI Inbox Agent — monthly/annual SaaS. Core product, recurring revenue.</div>
+          <div className="rev-desc">AI Inbox Agent-monthly/annual SaaS. Core product, recurring revenue.</div>
         </div>
         <div className="rev-card">
           <div className="rev-num">02</div>

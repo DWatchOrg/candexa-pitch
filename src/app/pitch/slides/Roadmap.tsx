@@ -1,4 +1,4 @@
-export default function BrokenSlide({ isActive }: { isActive?: boolean }) {
+export default function Roadmap({ isActive }: { isActive?: boolean }) {
   return (
     <div className={`slide ${isActive ? "active" : ""}`} id="s2">
       <div className="logo-small white">
@@ -18,36 +18,36 @@ export default function BrokenSlide({ isActive }: { isActive?: boolean }) {
         </svg>
         <span className="logo-text">Candexa AI</span>
       </div>
-      <div className="slide-num white">02 / 10</div>
+      <div className="slide-num white">10 / 11</div>
 
       {/* Decorative */}
       <svg className="deco" style={{top: "-60px", right: "-60px", opacity: 0.04}} width="300" height="300" viewBox="0 0 300 300">
         <circle cx="150" cy="150" r="140" fill="#ff8233"/>
       </svg>
 
-      <h1 className="s2-headline">Hiring Is<br/><span>Broken.</span></h1>
-      <p className="s2-sub">AI is accelerating hiring  but on top of fragmented infrastructure that holds everyone back.</p>
+      <h1 className="s2-headline">Future<br/><span>Roadmap .</span></h1>
+      <p className="s2-sub">We are building the world's first Intelligent Hiring Infrastructure, for Email.</p>
 
       <div className="s2-grid">
         <div className="pain-card">
-          <div className="pain-num">10+</div>
-          <div className="pain-label">Tools used per single hire  constant context switching</div>
+          <div className="pain-num">Goal 1</div>
+          <div className="pain-label">Unified "Email-as-an-ATS" Ecosystem</div>
         </div>
         <div className="pain-card">
-          <div className="pain-num">40%</div>
-          <div className="pain-label">Recruiter time lost switching between tabs & platforms</div>
+          <div className="pain-num">Goal 2</div>
+          <div className="pain-label">Advanced Conversational Behavioral Analytics</div>
         </div>
         <div className="pain-card">
-          <div className="pain-num">High</div>
-          <div className="pain-label">Candidate drop-off from slow, disconnected processes</div>
+          <div className="pain-num">Goal 3</div>
+          <div className="pain-label">Expansion of the "Autonomous Hiring Agent" Suite in Email</div>
         </div>
         <div className="pain-card">
-          <div className="pain-num">$$$</div>
-          <div className="pain-label">Expensive ATS systems that sit underused and unloved</div>
+          <div className="pain-num">Goal 4</div>
+          <div className="pain-label">Global "Professional Network" Layer across all Email Users.</div>
         </div>
         <div className="pain-card">
-          <div className="pain-num">0%</div>
-          <div className="pain-label">Of this changes when you add yet another AI tool on top</div>
+          <div className="pain-num">Goal 5</div>
+          <div className="pain-label">Deep Enterprise Infrastructure Integration & Scaling</div>
         </div>
       </div>
 
@@ -55,7 +55,7 @@ export default function BrokenSlide({ isActive }: { isActive?: boolean }) {
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
           <path d="M16 4L28 28H4L16 4Z" fill="#ff8233" opacity="0.8"/>
         </svg>
-        <div className="s2-bottom-text">The problem isn&#39;t a lack of tools. It&#39;s <span>fragmented infrastructure.</span></div>
+        <div className="s2-bottom-text">The problem isn&#39;t a lack of tools. It&#39;s <span>fragmented infrastructure  </span>and we are solving that with Candexa AI.</div>
       </div>
     </div>
   )

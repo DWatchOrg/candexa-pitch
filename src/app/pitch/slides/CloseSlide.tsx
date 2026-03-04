@@ -29,7 +29,7 @@ export default function CloseSlide({ isActive }: { isActive?: boolean }) {
         </svg>
 
         <div className="s10-eyebrow" style={{position: "relative", zIndex: 2}}>The Future of Hiring</div>
-        <h1 className="s10-headline" style={{position: "relative", zIndex: 2}}>The Email-native ATS  <br/>& Job Network,<br/>In Your Inbox.</h1>
+        <h1 className="s10-headline" style={{position: "relative", zIndex: 2}}> Email-native ATS  <br/>& Job Network.<br/></h1>
         <p className="s10-desc" style={{position: "relative", zIndex: 2}}>Candexa AI agents unlocks the new job network and intelligent hiring infrastructure; right in your inbox.</p>
         <div className="s10-contact" style={{position: "relative", zIndex: 2}}>
           <div className="s10-contact-item">

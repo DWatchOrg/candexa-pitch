@@ -36,27 +36,27 @@ export default function WhySlide({ isActive }: { isActive?: boolean }) {
                  {/* Founder 1 */}
                  <div className="st-founder">
                    <div className="st-photo-wrap">
-                     <Image src="/founder.jpeg" alt="Godspower Eseurhobo" fill style={{objectFit:'cover', objectPosition:'top'}}/>
+                     <Image src="/geo.png" alt="Godspower Eseurhobo" fill style={{objectFit:'cover', objectPosition:'top'}}/>
                    </div>
                    <div className="st-founder-tag">Future of Work Innovator</div>
                    <div className="st-founder-bio">
                      Product and sales leader driving <b>$29M+ ARR</b> at MBO Partners &amp; overseeing <b>$8M+</b> in government AI initiatives.
                    </div>
                    <div className="st-founder-name">Godspower Eseurhobo</div>
-                   <div className="st-founder-role">Co-founder &amp; CEO | Chief Errand Officer</div>
+                   <div className="st-founder-role">Founder &amp; CEO | Chief Errand Officer</div>
                  </div>
      
                  {/* Founder 2 */}
                  <div className="st-founder">
                    <div className="st-photo-wrap">
-                     <Image src="/team-photo.jpeg" alt="Alexander Torrenegra" fill style={{objectFit:'cover', objectPosition:'top'}}/>
+                     <Image src="/alexs.jpeg" alt="Alexander Torrenegra" fill style={{objectFit:'cover', objectPosition:'top'}}/>
                    </div>
-                   <div className="st-founder-tag">Lead Angel Investor</div>
+                   <div className="st-founder-tag">Serial Entrepreneur | SharkTank</div>
                    <div className="st-founder-bio">
-                     SharkTank Investor; bootstrapped Voice123 to <b>$200M GMV</b> &amp; secured <b>$20M</b> in funding for Torre AI.
+                     SharkTank Investor; bootstrapped Voice123 to <b>$200M GMV</b> &amp; secured <b>$22M</b> in funding for Torre AI.
                    </div>
                    <div className="st-founder-name">Alexander Torrenegra</div>
-                   <div className="st-founder-role">Co-founder &amp; ECM | Fundraising &amp; Partnership Strategy</div>
+                   <div className="st-founder-role">Executive Chairman &amp; Angel Investor</div>
                  </div>
                </div>
              </div>
