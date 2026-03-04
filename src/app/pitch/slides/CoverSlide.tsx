@@ -31,7 +31,7 @@ export default function CoverSlide({ isActive }: { isActive?: boolean }) {
 
       <div className="s1-left">
         <div className="s1-tag w-fit">The World First Email-native ATS & Job Network</div>
-        <h1 className="s1-headline">Source & Hire<br/>Talents,<br/><span>Right from your Inbox.</span></h1>
+        <h1 className="s1-headline">Source & Hire Talents,<br/><span>Right from your Inbox.</span></h1>
         <p className="s1-sub">
 AI agents that convert your email to a robust ATS and job network. No new software. No integrations. Just activate.</p>
         <div className="s1-pills">
