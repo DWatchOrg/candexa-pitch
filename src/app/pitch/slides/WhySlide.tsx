@@ -36,7 +36,7 @@ export default function WhySlide({ isActive }: { isActive?: boolean }) {
                  {/* Founder 1 */}
                  <div className="st-founder">
                    <div className="st-photo-wrap">
-                     <Image src="/geo-photo.png" alt="Godspower Eseurhobo" fill style={{objectFit:'cover', objectPosition:'top'}}/>
+                     <Image src="/new-geo.png" alt="Godspower Eseurhobo" fill style={{objectFit:'cover', objectPosition:'top'}}/>
                    </div>
                    <div className="st-founder-tag">Future of Work Innovator</div>
                    <div className="st-founder-bio">
