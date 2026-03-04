@@ -52,7 +52,7 @@ export default function InsightSlide({ isActive }: { isActive?: boolean }) {
           </div>
           <div className="s3-icon-card">
             <div className="ico">📅</div>
-            <div className="ico-label">Scheduling</div>
+            <div className="ico-label">Screening</div>
           </div>
           <div className="s3-icon-card">
             <div className="ico">🎯</div>

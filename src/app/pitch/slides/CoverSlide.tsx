@@ -30,9 +30,10 @@ export default function CoverSlide({ isActive }: { isActive?: boolean }) {
       </svg>
 
       <div className="s1-left">
-        <div className="s1-tag">Email-native ATS & Job Network</div>
-        <h1 className="s1-headline">The New Job<br/>Network.<br/><span>In Your Inbox.</span></h1>
-        <p className="s1-sub">Candexa AI turns your inbox into an AI-powered ATS & job network in one click. No new software. No integrations. Just activate.</p>
+        <div className="s1-tag w-fit">The World First Email-native ATS & Job Network</div>
+        <h1 className="s1-headline">Source & Hire<br/>Talents<br/><span>In Your Inbox.</span></h1>
+        <p className="s1-sub">
+AI agents that convert your email to a robust ATS and job network. No new software. No integrations. Just activate.</p>
         <div className="s1-pills">
           <span className="pill">Gmail</span>
           <span className="pill">Outlook</span>
@@ -74,7 +75,7 @@ export default function CoverSlide({ isActive }: { isActive?: boolean }) {
             <ellipse cx="20" cy="6.5" rx="3.5" ry="6.5" transform="rotate(330 20 20)" fill="white" opacity="0.9"/>
           </svg>
           <div style={{color:"white", fontWeight:900, fontSize:"26px", letterSpacing:"-1px", textAlign:"center", lineHeight:1.2}}>Candexa AI</div>
-          <div style={{color:"rgba(255,255,255,0.7)", fontSize:"12px", fontWeight:600, letterSpacing:"1px", textAlign:"center", textTransform:"uppercase"}}>Email-Native Hiring</div>
+          <div style={{color:"rgba(255,255,255,0.7)", fontSize:"12px", fontWeight:600, letterSpacing:"1px", textAlign:"center", textTransform:"uppercase"}}>intelligent Hiring Infrastructure built on Email</div>
         </div>
       </div>
     </div>

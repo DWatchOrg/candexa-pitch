@@ -1,3 +1,4 @@
+import Image from 'next/image';
 export default function WhySlide({ isActive }: { isActive?: boolean }) {
   return (
     <div className={`slide ${isActive ? "active" : ""}`} id="s8">
@@ -20,18 +21,47 @@ export default function WhySlide({ isActive }: { isActive?: boolean }) {
       </div>
       <div className="slide-num white">08 / 10</div>
 
-      <div className="s8-left">
-        {/* Deco */}
-        <svg style={{position: "absolute", top: 0, left: 0, opacity: 0.1}} width="100%" height="100%" viewBox="0 0 500 720" preserveAspectRatio="xMidYMid slice">
-          <circle cx="-50" cy="-50" r="250" fill="white"/>
-          <circle cx="550" cy="750" r="200" fill="white"/>
-        </svg>
-        <div className="s8-left-title" style={{position: "relative", zIndex: 2}}>Why We<br/>Win.</div>
-        <div className="s8-left-desc" style={{position: "relative", zIndex: 2}}>
-          The deeper you work from email,<br/>the harder it is to churn.<br/><br/>
-          Candexa AI becomes invisible infrastructure — always on, always working.
-        </div>
-      </div>
+       {/* LEFT PANEL — dark, two founder cards side by side */}
+           <div className="st-left">
+             <svg style={{position:"absolute",top:0,left:0,opacity:0.07}} width="100%" height="100%" viewBox="0 0 560 720" preserveAspectRatio="xMidYMid slice">
+               <circle cx="500" cy="100" r="200" fill="white"/>
+               <circle cx="-50" cy="650" r="180" fill="white"/>
+             </svg>
+     
+             <div className="st-left-inner" style={{position:"relative", zIndex:2}}>
+               <div className="st-slide-tag">The Team</div>
+               <h2 className="st-left-title">The perfect pedigree to <span>"Make AI in hiring more efficient"</span></h2>
+     
+               <div className="st-founders">
+                 {/* Founder 1 */}
+                 <div className="st-founder">
+                   <div className="st-photo-wrap">
+                     <Image src="/founder.jpeg" alt="Godspower Eseurhobo" fill style={{objectFit:'cover', objectPosition:'top'}}/>
+                   </div>
+                   <div className="st-founder-tag">Future of Work Innovator</div>
+                   <div className="st-founder-bio">
+                     Product and sales leader driving <b>$29M+ ARR</b> at MBO Partners &amp; overseeing <b>$8M+</b> in government AI initiatives.
+                   </div>
+                   <div className="st-founder-name">Godspower Eseurhobo</div>
+                   <div className="st-founder-role">Co-founder &amp; CEO | Chief Errand Officer</div>
+                 </div>
+     
+                 {/* Founder 2 */}
+                 <div className="st-founder">
+                   <div className="st-photo-wrap">
+                     <Image src="/team-photo.jpeg" alt="Alexander Torrenegra" fill style={{objectFit:'cover', objectPosition:'top'}}/>
+                   </div>
+                   <div className="st-founder-tag">Lead Angel Investor</div>
+                   <div className="st-founder-bio">
+                     SharkTank Investor; bootstrapped Voice123 to <b>$200M GMV</b> &amp; secured <b>$20M</b> in funding for Torre AI.
+                   </div>
+                   <div className="st-founder-name">Alexander Torrenegra</div>
+                   <div className="st-founder-role">Co-founder &amp; ECM | Fundraising &amp; Partnership Strategy</div>
+                 </div>
+               </div>
+             </div>
+           </div>
+     
 
       <div className="s8-right">
         <h2 className="s8-title">Our <span>Unfair</span><br/>Advantages</h2>

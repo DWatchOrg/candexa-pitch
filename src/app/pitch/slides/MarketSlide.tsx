@@ -39,14 +39,14 @@ export default function MarketSlide({ isActive }: { isActive?: boolean }) {
         <div className="market-bubble-wrap">
           <div className="market-bubble" style={{width: "120px", height: "120px", background: "rgba(255,130,51,0.6)"}}>
             <div className="bubble-val" style={{fontSize: "22px"}}>$18.6B</div>
-            <div className="bubble-lbl">Fees</div>
+            <div className="bubble-lbl">Total</div>
           </div>
           <div className="market-name">ATS Market</div>
         </div>
         <div className="market-bubble-wrap">
           <div className="market-bubble" style={{width: "100px", height: "100px", background: "rgba(255,130,51,0.4)"}}>
-            <div className="bubble-val" style={{fontSize: "18px"}}>$185B</div>
-            <div className="bubble-lbl">Tech</div>
+            <div className="bubble-val" style={{fontSize: "18px"}}>$1.8B</div>
+            <div className="bubble-lbl">Total</div>
           </div>
           <div className="market-name">Recruitment <br/>Automation</div>
         </div>

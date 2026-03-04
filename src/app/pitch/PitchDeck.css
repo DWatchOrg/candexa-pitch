@@ -247,6 +247,52 @@
 .win-text { font-size: 14px; color: var(--dark); font-weight: 600; line-height: 1.5; }
 .win-text em { color: var(--orange); font-style: normal; }
 
+/* ============ SLIDE 9-TEAM — TEAM / FUTURE ============ */
+#s9-team { background: var(--bg); flex-direction: row; align-items: stretch; }
+
+/* LEFT — dark panel */
+.st-left { width: 48%; background: var(--dark); display: flex; flex-direction: column; justify-content: center; padding: 44px 36px; position: relative; overflow: hidden; }
+.st-left-inner { display: flex; flex-direction: column; gap: 12px; }
+.st-slide-tag { font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 2px; }
+.st-left-title { font-size: 20px; font-weight: 900; color: white; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 14px; }
+.st-left-title span { color: var(--orange); }
+
+/* Founder row */
+.st-founders { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.st-founder { display: flex; flex-direction: column; }
+.st-photo-wrap { width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.1); }
+.st-founder-tag { font-size: 11px; font-weight: 800; color: var(--orange); margin-bottom: 5px; }
+.st-founder-bio { font-size: 10px; color: rgba(255,255,255,0.7); line-height: 1.55; margin-bottom: 8px; }
+.st-founder-bio b { color: white; }
+.st-founder-name { font-size: 12px; font-weight: 900; color: white; }
+.st-founder-role { font-size: 9px; color: rgba(255,255,255,0.45); font-weight: 600; margin-top: 2px; line-height: 1.4; }
+
+/* RIGHT — light content */
+.st-right { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 52px 44px; gap: 22px; }
+
+.st-quote { font-size: 18px; font-weight: 700; color: var(--dark); line-height: 1.55; letter-spacing: -0.3px; border-left: 4px solid var(--orange); padding-left: 18px; }
+.st-quote em { color: var(--orange); font-style: normal; font-weight: 800; }
+
+.st-partners-label { font-size: 10px; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 1.5px; }
+.st-partner-strip { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.st-partner-strip span { font-size: 11px; font-weight: 700; color: var(--dark); opacity: 0.6; }
+
+.st-milestones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.st-badge { aspect-ratio: 1 / 1; padding: 12px 14px; border-radius: 10px; font-size: 11px; font-weight: 600; line-height: 1.45; display: flex; align-items: center; justify-content: center; text-align: center; }
+.st-badge strong { font-weight: 900; }
+.st-badge em { font-style: normal; opacity: 0.75; }
+.st-badge-orange { background: var(--orange); color: white; }
+.st-badge-dark { background: var(--dark); color: white; }
+
+.st-logo-bar { display: flex; align-items: center; gap: 20px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.08); }
+.st-logo-bar span { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--grey); }
+
+/* Remove old team-* class rules that are no longer used */
+.team-header, .team-title, .team-main, .founder-grid, .founder-card,
+.founder-image-wrap, .founder-tag, .founder-bio, .founder-name, .founder-role,
+.team-vision, .vision-quote, .logo-strip, .badge-grid, .milestone-badge,
+.bottom-logos, .team-deco-top, .team-deco-bottom, .team-deco-circle { all: unset; }
+
 /* ============ SLIDE 9 — BUSINESS MODEL ============ */
 #s9 { background: var(--bg); flex-direction: column; justify-content: center; padding: 52px 60px; position: relative; }
 .s9-header { margin-bottom: 36px; }

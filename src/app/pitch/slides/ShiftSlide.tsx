@@ -72,7 +72,7 @@ export default function ShiftSlide({ isActive }: { isActive?: boolean }) {
             </div>
             <div className="model-step">
               <div className="step-num">3</div>
-              Hiring cycle auto-managed across roles 
+              Agentic & NLP-based automation in Email threads
             </div>
             <div className="model-step">
               <div className="step-num">4</div>
