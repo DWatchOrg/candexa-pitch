@@ -102,7 +102,7 @@ export default function PitchDeck() {
           onClick={() => window.print()}
           style={{ background: '#555', marginLeft: '12px' }}
         >
-          Download PDF
+          Download Slide
         </button>
       </div>
     </div>
