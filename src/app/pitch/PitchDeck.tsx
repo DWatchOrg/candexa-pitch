@@ -14,7 +14,7 @@ import MarketSlide from './slides/MarketSlide';
 import WhySlide from './slides/WhySlide';
 import BusinessModelSlide from './slides/BusinessModelSlide';
 import CloseSlide from './slides/CloseSlide';
-import Future from './slides/Future';
+
 
 export default function PitchDeck() {
   const [current, setCurrent] = useState(0);
@@ -29,7 +29,7 @@ export default function PitchDeck() {
     ProofSlide,
     MarketSlide,
     WhySlide,
-    Future,
+ 
     BusinessModelSlide,
     CloseSlide
   ];
